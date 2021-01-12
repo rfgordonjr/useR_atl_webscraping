@@ -104,9 +104,10 @@ Generally APIs
 - are easy to use.
 - standardize the ways customers and employees interact with data. 
 
-Best case scenario: company makes an API you can interact with via a dedicated R packages.
+- Best case scenario: company makes an API you can interact with via a dedicated R packages.
+- Less good scenario: build your own [RESTful](https://www.tutorialspoint.com/restful/) API.
 
-Less good scenario: build your own [RESTful](https://www.tutorialspoint.com/restful/) API.
+Either way, the website owner has already created a very specific way for you to pull information from their site.
 
 ---
 
