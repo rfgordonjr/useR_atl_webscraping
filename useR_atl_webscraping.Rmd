@@ -370,7 +370,13 @@ check_rtxt(url = sessionNike$url,
 
 ---
 
-# Example 1: Scraping Wikipedia
+class: inverse, middle, center
+
+# rvest Basics
+
+---
+
+# Example: Scraping Wikipedia
 
 Grab list of most visited country wikipedia pages (December 1, 2007 – January 1, 2020).
 
@@ -382,7 +388,7 @@ From <https://www.wikipedia.org/wiki/Wikipedia:Multiyear_ranking_of_most_viewed_
 
 ---
 
-# Example 1: Use nod to modify the url
+# Example: Use nod to modify the url
 
 Recall we already established permission with the `bow` function. 
 
@@ -415,7 +421,7 @@ hasPermission
 
 ---
 
-# Example 1: scrape with `rvest`
+# Example: scrape with `rvest`
 
 If we have permission, go ahead and scrape the table into memory:
 
@@ -459,7 +465,11 @@ background-size: contain
 
 ---
 
+class: inverse, center, middle
+
 # What if we have a dynamic webpage?
+
+???
 
 What do we mean by dynamic?
 
@@ -539,23 +549,13 @@ Do this one last check to see if you can avoid using Selenium:
 
 ---
 
-# Step 1: Install Docker
+# 5-step process for scraping dynamic sites
 
----
-
-# Step 2: Start a selenium server on the docker container
-
----
-
-# Step 3: Call a web browser inside the selenium server using `RSelenium`
-
----
-
-# Step 4: Navigate to the url and interact with the site
-
----
-
-# Step 5: Find the DOM and use `rvest` as before
+1. [Install Docker](https://docs.docker.com/get-docker/)
+2. Install and start a selenium server on the docker container.
+3. Call a web browser inside the selenium server using [RSelenium package](https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html).
+4. Navigate to the url and interact with the site.
+5. Use Selector Gadget/DOM and use `rvest` as before.
 
 ---
 
