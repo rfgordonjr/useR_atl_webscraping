@@ -268,7 +268,32 @@ End of robots.txt:
 
 class: inverse, middle, center
 
-# rvest Basics
+# Scraping Basics
+
+---
+
+# Tools for Scraping
+
+.pull-left[
+![](images/rvest.png)
+]
+.pull-right[
+Use clues from the Document Object Model (DOM)
+
+- [Selector Gadget](https://selectorgadget.com)
+- Browser Developer Tools
+
+Live Demo with Chrome
+]
+
+---
+
+# Important rvest functions
+
+- `html_nodes`: specify XPath and CSS nodes to select
+- `html_table`: smartly pulls tabular information
+- `html_text`: pulls literal text from html tag
+- `html_attr`: pulls attribute of the html tag
 
 ---
 
@@ -288,9 +313,7 @@ From <https://www.wikipedia.org/wiki/Wikipedia:Multiyear_ranking_of_most_viewed_
 
 Recall we already established permission with the `bow` function. 
 
-Since we are visiting a modified part of Wikipedia use the `nod` function to navigate to the new path.
-
-This updates the session’s URL, making sure that the new location can be negotiated against `robots.txt`.
+Use the `nod` function to gain permission from `robots.txt` for the modifed path.
 
 ```{r, echo=TRUE, message=FALSE}
 library(rvest)
@@ -304,7 +327,7 @@ newSession
 
 # Example: scrape with `rvest`
 
-If we have permission, go ahead and scrape the table into memory:
+Having established permission, go ahead and scrape the table into memory:
 
 ```{r, echo=TRUE, message=FALSE}
 listWikiTables <- scrape(newSession) %>% 
@@ -312,22 +335,6 @@ listWikiTables <- scrape(newSession) %>%
     html_table()
   listWikiTables[[2]] %>% head()
 ```
-
----
-
-# How did we get that?
-
-.pull-left[
-![](images/rvest.png)
-]
-.pull-right[
-Use clues from the Document Object Model (DOM)
-
-- [Selector Gadget](https://selectorgadget.com)
-- Browser Developer Tools
-
-Live Demo with Chrome
-]
 
 ---
 
@@ -370,52 +377,25 @@ Real situation at my job:
 # Use bots to pull dynamically generated data
 
 
-One way to do this is via a Selenium server...
 
-.center[
+
+.pull-left[
+Use a Selenium server
+
 ![](images/Seleniumlogo.png)
-]
 
-with a Docker container.
-.center[
+with a Docker container:
+
 ![](images/docker_vertical.png)
 ]
 
----
-
-# What are these?
-
+.pull-right[
 [Selenium](https://en.wikipedia.org/wiki/Selenium_(software) is a portable framework for testing web applications.
 
-A [Docker](https://www.docker.com/resources/what-container) container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
+A [Docker](https://www.docker.com/resources/what-container) container image is a standalone package of software that includes everything needed to run an application.
+]
 
-Think of this as similar to virtual machines (VMs) but differ in an important way; containers virtualize the OS instead of the hardware.
-
----
-
-# Quick tangent: Docker + Selenium does more than just web scraping
-
-> Selenium is a portable software-testing framework for web applications.
-
-Selenium can be used for *any* software related to web deployment. Some other R-specific examples include:
-
-1. [Persistent reproducible reporting](https://cran.r-project.org/web/packages/liftr/vignettes/liftr-intro.html)
-2. [Testing](http://rpubs.com/johndharrison/13408) and [deploying shiny apps](https://www.shinyproxy.io).
-
-These topics are outside the scope of this talk but worth noting as relevant subjects for an R user group.
-
----
-
-# Final tangent: Is it *really* dynamic?
-
-Many website generate content dynamically (i.e. according to user input). That doesn't mean we are forced to use Selenium.
-
-We only need Selenium if interaction with the website is absolutely necessary to generate its content.
-
-Do this one last check to see if you can avoid using Selenium: 
-
-1. Check if interacting with the website creates a url that lets you recover the web page.
-2. If copying/pasting the resulting url reproduces the website's content, you can manipulate the url string to suit your needs.
+These are only necessary if interacting with the website does not create a url that lets you recover the web page.
 
 ---
 
@@ -426,6 +406,14 @@ Do this one last check to see if you can avoid using Selenium:
 3. Call a web browser inside the selenium server using [RSelenium package](https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html).
 4. Navigate to the url and interact with the site.
 5. Use Selector Gadget/DOM and use `rvest` as before.
+
+---
+
+class: center, inverse, middle
+
+# Thank you!
+
+<https://github.com/rfgordonjr/useR_atl_webscraping>
 
 ---
 
@@ -676,3 +664,15 @@ if(hasPermission){
 }
 ```
 
+---
+
+# Quick tangent: Docker + Selenium does more than just web scraping
+
+> Selenium is a portable software-testing framework for web applications.
+
+Selenium can be used for *any* software related to web deployment. Some other R-specific examples include:
+
+1. [Persistent reproducible reporting](https://cran.r-project.org/web/packages/liftr/vignettes/liftr-intro.html)
+2. [Testing](http://rpubs.com/johndharrison/13408) and [deploying shiny apps](https://www.shinyproxy.io).
+
+These topics are outside the scope of this talk but worth noting as relevant subjects for an R user group.
