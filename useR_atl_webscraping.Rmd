@@ -376,9 +376,6 @@ Real situation at my job:
 
 # Use bots to pull dynamically generated data
 
-
-
-
 .pull-left[
 Use a Selenium server
 
@@ -393,9 +390,9 @@ with a Docker container:
 [Selenium](https://en.wikipedia.org/wiki/Selenium_(software) is a portable framework for testing web applications.
 
 A [Docker](https://www.docker.com/resources/what-container) container image is a standalone package of software that includes everything needed to run an application.
-]
 
 These are only necessary if interacting with the website does not create a url that lets you recover the web page.
+]
 
 ---
 
