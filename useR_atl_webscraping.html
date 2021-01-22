@@ -305,122 +305,6 @@ End of robots.txt:
 
 ---
 
-# Create a TRUE/FALSE variable for scraping
-
-1. Use the `polite` package to `bow` and ask for permission to scrape.
-2. Create a function called to pull `robots.txt` file in a nice list.
-3. Write another function to create a boolean TRUE/FALSE variable to build into our workflow a check before scraping.
-
-Function definitions in appendix slides or at the source: &lt;https://www.ddrive.no/post/be-nice-on-the-web/&gt;
-
-
-
----
-
-## Apply to our examples: LinkedIn
-
-
-```r
-sessionLinkedIn$url
-```
-
-```
-## [1] "https://www.linkedin.com"
-```
-
-```r
-sessionLinkedIn$user_agent
-```
-
-```
-## [1] "polite R package - https://github.com/dmi3kno/polite"
-```
-
-```r
-check_rtxt(url = sessionLinkedIn$url, 
-           delay = 5, 
-           user_agent = sessionLinkedIn$user_agent,
-           force = FALSE,
-           verbose = FALSE)
-```
-
-```
-## Warning in check_rtxt(url = sessionLinkedIn$url, delay = 5, user_agent =
-## sessionLinkedIn$user_agent, : robots.txt says this path is NOT scrapable for
-## your user agent!
-```
-
-```
-## [1] FALSE
-```
-
----
-
-## Apply to our examples: Wikipedia
-
-
-```r
-sessionWiki$url
-```
-
-```
-## [1] "https://www.wikipedia.org"
-```
-
-```r
-sessionWiki$user_agent
-```
-
-```
-## [1] "polite R package - https://github.com/dmi3kno/polite"
-```
-
-```r
-check_rtxt(url = sessionWiki$url, 
-           delay = 5, 
-           user_agent = sessionWiki$user_agent,
-           force = FALSE,
-           verbose = FALSE)
-```
-
-```
-## [1] TRUE
-```
-
----
-
-## Apply to our examples: Nike
-
-
-```r
-sessionNike$url
-```
-
-```
-## [1] "https://www.nike.com/us/en_us/"
-```
-
-```r
-sessionNike$user_agent
-```
-
-```
-## [1] "polite R package - https://github.com/dmi3kno/polite"
-```
-
-```r
-check_rtxt(url = sessionNike$url, 
-           delay = 5, 
-           user_agent = sessionNike$user_agent,
-           force = FALSE,
-           verbose = FALSE)
-```
-
-```
-## [1] TRUE
-```
-
----
 
 class: inverse, middle, center
 
@@ -467,40 +351,16 @@ newSession
 
 ---
 
-# Optional: Create the boolean condition
-
-Then use our function to create a boolean variable:
-
-
-```r
-hasPermission &lt;- check_rtxt(url = newSession$url, 
-                            delay = 5, 
-                            user_agent = newSession$user_agent,
-                            force = FALSE,
-                            verbose = FALSE)
-hasPermission
-```
-
-```
-## [1] TRUE
-```
-
----
-
 # Example: scrape with `rvest`
 
 If we have permission, go ahead and scrape the table into memory:
 
 
 ```r
-if(hasPermission){
-  listWikiTables &lt;- scrape(newSession) %&gt;% 
+listWikiTables &lt;- scrape(newSession) %&gt;% 
     html_nodes(xpath = '//*[@class="wikitable"]') %&gt;% 
     html_table()
   listWikiTables[[2]] %&gt;% head()
-} else {
-  paste("No permission.")
-}
 ```
 
 ```
@@ -559,15 +419,8 @@ Situations where we have BOTH:
 
 # Motivating Example
 
-Employee spending at SBD hotels.
-
-- Study where employees stay.
-- Cluster hotel locations.
-- Find hotel stays far from preferred hotels.
-- Plot information on a map.
-
-Problems: 
-- Updated hotel list is lives at intranet site.
+Real situation at my job: 
+- Updated data lives at intranet site.
 - List changes often.
 - List generated dynamically from site UI.
 - The data changes, but the url stays the same.
@@ -639,6 +492,18 @@ Do this one last check to see if you can avoid using Selenium:
 class: center, inverse, middle
 
 # Appendix
+
+---
+
+# Create a TRUE/FALSE variable for scraping
+
+1. Use the `polite` package to `bow` and ask for permission to scrape.
+2. Create a function called to pull `robots.txt` file in a nice list.
+3. Write another function to create a boolean TRUE/FALSE variable to build into our workflow a check before scraping.
+
+Function definitions in appendix slides or at the source: &lt;https://www.ddrive.no/post/be-nice-on-the-web/&gt;
+
+
 
 ---
 
@@ -754,6 +619,160 @@ check_rtxt &lt;-function(url, delay, user_agent, force, verbose){
 
   is_scrapable
 }
+```
+
+---
+
+
+# Create the conditional logic
+
+Then use our function to create a boolean variable:
+
+
+```r
+hasPermission &lt;- check_rtxt(url = newSession$url, 
+                            delay = 5, 
+                            user_agent = newSession$user_agent,
+                            force = FALSE,
+                            verbose = FALSE)
+hasPermission
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+## Apply to our examples: LinkedIn
+
+
+```r
+sessionLinkedIn$url
+```
+
+```
+## [1] "https://www.linkedin.com"
+```
+
+```r
+sessionLinkedIn$user_agent
+```
+
+```
+## [1] "polite R package - https://github.com/dmi3kno/polite"
+```
+
+```r
+check_rtxt(url = sessionLinkedIn$url, 
+           delay = 5, 
+           user_agent = sessionLinkedIn$user_agent,
+           force = FALSE,
+           verbose = FALSE)
+```
+
+```
+## Warning in check_rtxt(url = sessionLinkedIn$url, delay = 5, user_agent =
+## sessionLinkedIn$user_agent, : robots.txt says this path is NOT scrapable for
+## your user agent!
+```
+
+```
+## [1] FALSE
+```
+
+---
+
+## Apply to our examples: Wikipedia
+
+
+```r
+sessionWiki$url
+```
+
+```
+## [1] "https://www.wikipedia.org"
+```
+
+```r
+sessionWiki$user_agent
+```
+
+```
+## [1] "polite R package - https://github.com/dmi3kno/polite"
+```
+
+```r
+check_rtxt(url = sessionWiki$url, 
+           delay = 5, 
+           user_agent = sessionWiki$user_agent,
+           force = FALSE,
+           verbose = FALSE)
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+## Apply to our examples: Nike
+
+
+```r
+sessionNike$url
+```
+
+```
+## [1] "https://www.nike.com/us/en_us/"
+```
+
+```r
+sessionNike$user_agent
+```
+
+```
+## [1] "polite R package - https://github.com/dmi3kno/polite"
+```
+
+```r
+check_rtxt(url = sessionNike$url, 
+           delay = 5, 
+           user_agent = sessionNike$user_agent,
+           force = FALSE,
+           verbose = FALSE)
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+# Example: scrape with `rvest`
+
+If we have permission, go ahead and scrape the table into memory:
+
+
+```r
+if(hasPermission){
+  listWikiTables &lt;- scrape(newSession) %&gt;% 
+    html_nodes(xpath = '//*[@class="wikitable"]') %&gt;% 
+    html_table()
+  listWikiTables[[2]] %&gt;% head()
+} else {
+  paste("No permission.")
+}
+```
+
+```
+##   Rank           Page Views in millions
+## 1    1  United States               220
+## 2    2          India               139
+## 3    3 United Kingdom               123
+## 4    4         Canada                99
+## 5    5      Australia                93
+## 6    6          China                86
 ```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
