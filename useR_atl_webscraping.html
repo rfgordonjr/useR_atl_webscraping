@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 
 # An Introduction to Web Scraping in R
 ### Rob Gordon
-### Jan 21, 2018 (updated: 2021-01-13)
+### Jan 28, 2018
 
 ---
 
@@ -43,6 +43,21 @@ class: center, middle, inverse, title-slide
 
 ---
 
+
+# Introducing Web Scraping but also...
+
+I'll spend plenty of time about what web scraping is and how to do it in different situations.
+
+But this is also a talk about *not* web scraping. I'll start by talking about:
+
+- Other options to consider first.
+- Why you shouldn't do it.
+- How to check if its allowed.
+
+*Then* i'll talk about what it is and how to do it.
+
+---
+
 # Motivation: Focused Laziness
 
 ![](images/laziness.png)
@@ -59,34 +74,12 @@ I'd rather dedicate work or energy to automating a task (pulling data from the w
 
 ---
 
-# Introducing Web Scraping but also...
+# Before scraping, have you tried:
 
-I'll spend plenty of time about what web scraping is and how to do it in different situations.
+.pull-left[
+### Direct download (base)
 
-But this is also a talk about *not* web scraping. I'll start by talking about:
-
-- Other options to consider first.
-- Why you shouldn't do it.
-- How to check if its allowed.
-
-*Then* i'll talk about what it is and how to do it.
-
----
-
-# Methods to consider before scraping:
-
-Have you tried:
-
-- Direct download (base)
-- APIs
-
----
-
-# Direct Download
-
-This might be the best-case scenario. 
-
-Copy/paste the url of the data's location to a function in R.
+Just paste the url directly into `read.table`:
 
 
 ```r
@@ -105,25 +98,24 @@ head(corn_dat)
 ## 6 M-4 15  9.3
 ```
 
----
-
-# APIs
+]
+.pull-right[
+### APIs
 
 [API](https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82) stands for Application Programming Interface. 
 
-APIs typically require setting up an account and generating a key to access data.
-
-Generally APIs
-
-- are easy to use.
-- standardize the ways customers and employees interact with data. 
+APIs require setting up an account and generating a key to access data.
 
 The website owner creates a very specific way for users to pull information from their site.
 
 - Best case scenario: company makes an API you can interact with via a dedicated R packages.
 - Less good scenario: build your own [RESTful](https://www.tutorialspoint.com/restful/) API.
+]
+
 
 ---
+
+
 
 # Last Resort: Web Scraping
 
@@ -513,12 +505,12 @@ if(hasPermission){
 
 ```
 ##   Rank           Page Views in millions
-## 1    1  United States               204
-## 2    2          India               128
-## 3    3 United Kingdom               114
-## 4    4         Canada                92
-## 5    5      Australia                87
-## 6    6          China                79
+## 1    1  United States               220
+## 2    2          India               139
+## 3    3 United Kingdom               123
+## 4    4         Canada                99
+## 5    5      Australia                93
+## 6    6          China                86
 ```
 
 ---

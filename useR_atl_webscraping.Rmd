@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to Web Scraping in R"
 author: "Rob Gordon"
-date: "Jan 21, 2018 (updated: `r Sys.Date()`)"
+date: "Jan 28, 2018"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -40,6 +40,21 @@ options(htmltools.dir.version = FALSE)
 
 ---
 
+
+# Introducing Web Scraping but also...
+
+I'll spend plenty of time about what web scraping is and how to do it in different situations.
+
+But this is also a talk about *not* web scraping. I'll start by talking about:
+
+- Other options to consider first.
+- Why you shouldn't do it.
+- How to check if its allowed.
+
+*Then* i'll talk about what it is and how to do it.
+
+---
+
 # Motivation: Focused Laziness
 
 ![](images/laziness.png)
@@ -56,34 +71,12 @@ I'd rather dedicate work or energy to automating a task (pulling data from the w
 
 ---
 
-# Introducing Web Scraping but also...
+# Before scraping, have you tried:
 
-I'll spend plenty of time about what web scraping is and how to do it in different situations.
+.pull-left[
+### Direct download (base)
 
-But this is also a talk about *not* web scraping. I'll start by talking about:
-
-- Other options to consider first.
-- Why you shouldn't do it.
-- How to check if its allowed.
-
-*Then* i'll talk about what it is and how to do it.
-
----
-
-# Methods to consider before scraping:
-
-Have you tried:
-
-- Direct download (base)
-- APIs
-
----
-
-# Direct Download
-
-This might be the best-case scenario. 
-
-Copy/paste the url of the data's location to a function in R.
+Just paste the url directly into `read.table`:
 
 ```{r}
 ## From Casella's Statistical Design:
@@ -91,25 +84,24 @@ corn_dat <- read.table(file = "http://archived.stat.ufl.edu/casella/StatDesign/W
 head(corn_dat)
 ```
 
----
-
-# APIs
+]
+.pull-right[
+### APIs
 
 [API](https://medium.freecodecamp.org/what-is-an-api-in-english-please-b880a3214a82) stands for Application Programming Interface. 
 
-APIs typically require setting up an account and generating a key to access data.
-
-Generally APIs
-
-- are easy to use.
-- standardize the ways customers and employees interact with data. 
+APIs require setting up an account and generating a key to access data.
 
 The website owner creates a very specific way for users to pull information from their site.
 
 - Best case scenario: company makes an API you can interact with via a dedicated R packages.
 - Less good scenario: build your own [RESTful](https://www.tutorialspoint.com/restful/) API.
+]
+
 
 ---
+
+
 
 # Last Resort: Web Scraping
 
