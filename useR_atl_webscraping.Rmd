@@ -55,22 +55,6 @@ But this is also a talk about *not* web scraping. I'll start by talking about:
 
 ---
 
-# Motivation: Focused Laziness
-
-![](images/laziness.png)
-
-
-Laziness is indistinguishable from efficiency when you work towards automation rather than repetitive tasks.
-
-[Never copy/paste if you don't have to.](https://portswigger.net/daily-swig/underestimated-dangers-of-copy-and-paste-exposed)
-
-
-???
-
-I'd rather dedicate work or energy to automating a task (pulling data from the web) with the press of a button than navigating to a site once a month, and copying and pasting data, esp since I know the website information will change over time. 
-
----
-
 # Before scraping, have you tried:
 
 .pull-left[
@@ -278,26 +262,26 @@ class: inverse, middle, center
 ![](images/rvest.png)
 ]
 .pull-right[
-Use clues from the Document Object Model (DOM)
+Use clues from the Document Object Model (DOM), and feed the clues into `rvest` functions.
+
+2 options to get clues:
 
 - [Selector Gadget](https://selectorgadget.com)
-- Browser Developer Tools
+- Inspect DOM with browser developer tools
 
-Live Demo with Chrome
+The rest of the talk will demonstrate these two options as part of a live Demo with Chrome.
 ]
 
 ---
 
-# Important rvest functions
+class: inverse, center, middle
 
-- `html_nodes`: specify XPath and CSS nodes to select
-    - [XPath](https://www.w3schools.com/xml/xpath_intro.asp): Language for navigating XML documents. XML handles *transfer* of data, while HTML handles *presentation* of data.
-    - [CSS](https://www.w3.org/Style/CSS/Overview.en.html): a simple way to style an HTML page.
-- `html_table`: smartly pulls tabular information
-    - assumes no cells span multiple rows
-    - assumes headers in first row
-- `html_text`: pulls literal text from html tag
-- `html_attr`: pulls attribute of the html tag
+background-image: url("images/DOM.png")
+background-position: center
+background-size: contain
+
+# Introducing the DOM
+
 
 ---
 
@@ -342,14 +326,16 @@ listWikiTables <- scrape(newSession) %>%
 
 ---
 
-class: inverse, center, middle
+# Important rvest functions
 
-background-image: url("images/DOM.png")
-background-position: center
-background-size: contain
-
-# Introducing the DOM
-
+- `html_nodes`: specify XPath and CSS nodes to select
+    - [XPath](https://www.w3schools.com/xml/xpath_intro.asp): Language for navigating XML documents. XML handles *transfer* of data, while HTML handles *presentation* of data.
+    - [CSS](https://www.w3.org/Style/CSS/Overview.en.html): a simple way to style an HTML page.
+- `html_table`: smartly pulls tabular information
+    - assumes no cells span multiple rows
+    - assumes headers in first row
+- `html_text`: pulls literal text from html tag
+- `html_attr`: pulls attribute of the html tag
 
 ---
 
