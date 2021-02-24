@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to Web Scraping in R"
 author: "Rob Gordon"
-date: "Jan 28, 2018"
+date: "Feb 25, 2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -291,7 +291,11 @@ Live Demo with Chrome
 # Important rvest functions
 
 - `html_nodes`: specify XPath and CSS nodes to select
+    - [XPath](https://www.w3schools.com/xml/xpath_intro.asp): Language for navigating XML documents. XML handles *transfer* of data, while HTML handles *presentation* of data.
+    - [CSS](https://www.w3.org/Style/CSS/Overview.en.html): a simple way to style an HTML page.
 - `html_table`: smartly pulls tabular information
+    - assumes no cells span multiple rows
+    - assumes headers in first row
 - `html_text`: pulls literal text from html tag
 - `html_attr`: pulls attribute of the html tag
 
