@@ -258,7 +258,7 @@ class: inverse, middle, center
 
 # Quick Tangent: %>%
 
-The `%>%` symbol is called "the pipe" and pronounced "then." It comes from the `dplyr` (and `magrittr`) packages.
+`%>%` is called ["the pipe"](https://magrittr.tidyverse.org/reference/pipe.html) and pronounced "then." It comes from the `dplyr` (and `magrittr`) packages.
 
 It works like this:
 
@@ -316,9 +316,9 @@ background-size: contain
 
 # Example: Scraping Wikipedia
 
-Grab list of most visited country wikipedia pages (December 1, 2007 – January 1, 2020).
+Grab the list of most visited country wikipedia pages (December 1, 2007 – January 1, 2021). 
 
-From <https://www.wikipedia.org/wiki/Wikipedia:Multiyear_ranking_of_most_viewed_pages>:
+Use the selector gadget and check the DOM from <https://www.wikipedia.org/wiki/Wikipedia:Multiyear_ranking_of_most_viewed_pages>:
 
 .center[
 ![](images/screenShotWikiTableCountries.png)
