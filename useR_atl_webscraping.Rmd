@@ -256,6 +256,35 @@ class: inverse, middle, center
 
 ---
 
+# Quick Tangent: %>%
+
+The `%>%` symbol is called "the pipe" and pronounced "then." It comes from the `dplyr` (and `magrittr`) packages.
+
+It works like this:
+
+- `f(x,y) = x %>% f(.,y) = x %>% f(y)`
+- `f(x,y) = y %>% f(x, .)`
+- `g(f(x,y)) = x %>% f(y) %>% g()`
+
+This helps certain code to be more readable. Would you rather read
+
+```{r, eval=FALSE, message=FALSE}
+library(dplyr)
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(mean_mpg = mean(mpg))
+```
+
+Or...
+
+```{r, eval=FALSE}
+summarise(group_by(mtcars, cyl), mean_mpg = mean(mpg))
+```
+
+
+
+---
+
 # Tools for Scraping
 
 .pull-left[
